@@ -21,6 +21,7 @@ public:
                     curr++;
                     cnt++;
                 }
+                i = prev;
             }
             ans = max(cnt, ans);
         }
