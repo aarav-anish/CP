@@ -3,20 +3,20 @@ public:
     int longestConsecutive(vector<int>& nums) {
         if(nums.size()<=1)
             return nums.size();
-        sort(nums.begin(), nums.end());
         
-        int prev = nums[0], cnt = 0, ans = 0;
-        for(int i=1; i<nums.size(); i++) {
-            if(nums[i]-prev == 1) {
-                cnt++;
-            } else if(nums[i]-prev > 1) {
-                ans = max(ans, cnt+1);
-                cnt = 0;
-            }
-            prev = nums[i];
+        unordered_set<int> st;
+        for(auto i: nums) {
+            st.insert(i);
         }
-        ans = max(ans, cnt+1);
-
+        int cnt = 0, ans = 0;
+        for(auto i: nums) {
+            if(st.find(i-1)==st.end()) {
+                cnt = 0;
+                while(st.find(i++)!=st.end())
+                    cnt++;
+                ans = max(cnt, ans);
+            }
+        }
         return ans;
     }
 };
