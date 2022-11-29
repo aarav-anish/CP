@@ -9,7 +9,7 @@ public:
             st.insert(i);
         }
         int cnt = 0, ans = 0;
-        for(auto i: nums) {
+        for(auto i: st) {
             if(st.find(i-1)==st.end()) {
                 cnt = 0;
                 while(st.find(i++)!=st.end())
