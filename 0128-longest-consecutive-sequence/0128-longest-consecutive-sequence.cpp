@@ -5,14 +5,15 @@ public:
             return nums.size();
         
         unordered_set<int> st;
-        for(auto i: nums) {
-            st.insert(i);
+        for(int i=0; i<nums.size(); i++) {
+            st.insert(nums[i]);
         }
         int cnt = 0, ans = 0;
-        for(auto i: st) {
-            if(st.find(i-1)==st.end()) {
+        for(int i=0; i<nums.size(); i++) {
+            if(st.find(nums[i]-1)==st.end()) {
                 cnt = 0;
-                while(st.find(i++)!=st.end())
+                int curr = nums[i];
+                while(st.find(curr++)!=st.end())
                     cnt++;
                 ans = max(cnt, ans);
             }
