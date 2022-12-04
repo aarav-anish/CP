@@ -4,8 +4,10 @@ public:
         int ans = -1e9, temp = 0;
         for(int i=0; i<nums.size(); i++) {
             temp += nums[i];
-            ans = max(temp, ans);
-            temp = max(0, temp);
+            if(temp > ans)
+                ans = temp;
+            if(temp < 0)
+                temp = 0;
         }
         return ans;
     }
