@@ -1,26 +1,16 @@
-#include<algorithm>
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-        if(s.size() <= 1) {
-            return s.size();
-        }
-        int ans = 1;
+        int ans = 0;
         set<char> st;
         for(int i=0; i<s.size(); i++) {
             st.clear();
-            for(int j=i; j<s.size(); j++) {
-                if(st.find(s[j])==st.end()) {
-                    st.insert(s[j]);
-                }
-                else {
-                    if(st.size() > ans)
-                        ans = st.size();
+            for(int j=i ; j<s.size(); j++) {
+                if(st.find(s[j]) != st.end())
                     break;
-                }
+                st.insert(s[j]);
+                ans = max(j-i+1, ans);
             }
-            if(st.size() > ans)
-                ans = st.size();
         }
         return ans;
     }
